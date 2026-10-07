@@ -1,192 +1,164 @@
-# Ai-movie-recommender
-AI-powered movie recommendation system using Machine Learning, NLP, and content-based filtering to provide personalized movie suggestions
-import streamlit as st
-import pandas as pd
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
+# 🎬 AI Movie Recommender
 
-# -----------------------------
-# Page Configuration
-# -----------------------------
-st.set_page_config(
-    page_title="AI Movie Recommender",
-    page_icon="🎬",
-    layout="wide"
-)
+<p align="center">
+  <img src="assets/hero.svg" alt="AI Movie Recommender hero graphic" width="100%" />
+</p>
 
-st.title("🎬 AI Movie Recommender System")
-st.write("Discover movies similar to your favorite movies using AI 🤖")
+<p align="center">
+  <img alt="Python" src="https://img.shields.io/badge/Python-3.9%2B-3776AB?style=for-the-badge&logo=python&logoColor=white" />
+  <img alt="Streamlit" src="https://img.shields.io/badge/Streamlit-App-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white" />
+  <img alt="Scikit-learn" src="https://img.shields.io/badge/scikit--learn-ML-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white" />
+  <img alt="NLP" src="https://img.shields.io/badge/NLP-Text-Analysis-00A6A6?style=for-the-badge&logo=python&logoColor=white" />
+</p>
 
-# -----------------------------
-# Load Dataset
-# -----------------------------
-@st.cache_data
-def load_data():
-    try:
-        movies = pd.read_csv("data/movies.csv")
-    except FileNotFoundError:
-        st.error("movies.csv not found inside the data folder.")
-        st.stop()
+A simple AI-powered movie recommendation system that suggests movies based on a selected movie, using machine learning, natural language processing, and content-based filtering.
 
-    return movies
+## ✨ What this project does
 
+- Recommends movies similar to a chosen movie
+- Uses movie genres and descriptions for suggestions
+- Gives a friendly and interactive web interface with Streamlit
+- Works well as a beginner-friendly ML and NLP project
 
-movies = load_data()
+## 🧠 How the recommendation works
 
-# -----------------------------
-# Check Required Columns
-# -----------------------------
-required_columns = ["title", "genres", "overview"]
+1. Load movie data from a CSV file
+2. Combine important fields like genres and overview
+3. Convert movie text into numerical vectors using TF-IDF
+4. Measure similarity with cosine similarity
+5. Show the most relevant movies to the user
 
-for column in required_columns:
-    if column not in movies.columns:
-        st.error(f"Required column '{column}' is missing from movies.csv")
-        st.stop()
+<p align="center">
+  <img src="assets/recommendation-flow.svg" alt="Recommendation flow" width="90%" />
+</p>
 
-# Replace missing values
-movies["genres"] = movies["genres"].fillna("")
-movies["overview"] = movies["overview"].fillna("")
+## 🚀 Features
 
-# Combine important features
-movies["combined_features"] = (
-    movies["genres"] + " " +
-    movies["overview"]
-)
+- Interactive movie selector
+- Adjustable number of recommendations
+- Similarity score display
+- Clean and beginner-friendly UI
+- Content-based filtering approach
 
-# -----------------------------
-# TF-IDF Vectorization
-# -----------------------------
-@st.cache_resource
-def create_model(data):
-    vectorizer = TfidfVectorizer(
-        stop_words="english"
-    )
+## 🗂️ Project structure
 
-    feature_matrix = vectorizer.fit_transform(
-        data["combined_features"]
-    )
+```text
+Ai-movie-recommender/
+├── app.py
+├── README.md
+├── requirements.txt
+├── assets/
+│   ├── hero.svg
+│   └── recommendation-flow.svg
+├── data/
+│   └── .gitkeep
+└── .gitignore
+```
 
-    similarity_matrix = cosine_similarity(feature_matrix)
+## 🛠️ Step-by-step setup
 
-    return similarity_matrix
+### 1) Clone the project
 
+```bash
+git clone https://github.com/rammaddilety1-ctrl/Ai-movie-recommender.git
+cd Ai-movie-recommender
+```
 
-similarity = create_model(movies)
+### 2) Create a virtual environment
 
-# -----------------------------
-# Recommendation Function
-# -----------------------------
-def recommend_movies(movie_name, number_of_movies=5):
+```bash
+python -m venv venv
+```
 
-    movie_name = movie_name.lower()
+On Windows:
 
-    matches = movies[
-        movies["title"].str.lower() == movie_name
-    ]
+```bash
+venv\Scripts\activate
+```
 
-    if matches.empty:
-        return None
+On macOS/Linux:
 
-    movie_index = matches.index[0]
+```bash
+source venv/bin/activate
+```
 
-    similarity_scores = list(
-        enumerate(similarity[movie_index])
-    )
+### 3) Install dependencies
 
-    similarity_scores = sorted(
-        similarity_scores,
-        key=lambda x: x[1],
-        reverse=True
-    )
+```bash
+pip install -r requirements.txt
+```
 
-    recommendations = []
+### 4) Prepare the dataset
 
-    for index, score in similarity_scores[1:number_of_movies + 1]:
+Create a `data/` folder and place your movie dataset in it as `movies.csv`.
 
-        movie = movies.iloc[index]
+Your CSV should include at least these columns:
 
-        recommendations.append({
-            "title": movie["title"],
-            "genres": movie["genres"],
-            "similarity": round(score * 100, 2)
-        })
+- `title`
+- `genres`
+- `overview`
 
-    return recommendations
+Example:
 
+```csv
+title,genres,overview
+Inception,Science Fiction, A thief who steals corporate secrets through dream-sharing technology.
+The Dark Knight,Action, Batman fights to save Gotham from a criminal mastermind.
+```
 
-# -----------------------------
-# User Interface
-# -----------------------------
-st.subheader("🔍 Choose a Movie")
+### 5) Run the app
 
-movie_list = movies["title"].dropna().tolist()
+```bash
+streamlit run app.py
+```
 
-selected_movie = st.selectbox(
-    "Select your favorite movie:",
-    movie_list
-)
+Then open the local URL shown in the terminal, usually:
 
-number_of_movies = st.slider(
-    "Number of recommendations:",
-    min_value=3,
-    max_value=10,
-    value=5
-)
+```text
+http://localhost:8501
+```
 
-if st.button("🎯 Recommend Movies"):
+## 📌 Example workflow
 
-    recommendations = recommend_movies(
-        selected_movie,
-        number_of_movies
-    )
+1. Select a favorite movie from the dropdown
+2. Choose how many recommendations you want
+3. Click the recommendation button
+4. View the top related movies and similarity percentages
 
-    if recommendations:
+## 🔧 Main app logic
 
-        st.success(
-            f"Movies similar to **{selected_movie}**:"
-        )
+The app uses:
 
-        for i, movie in enumerate(recommendations, 1):
+- `TfidfVectorizer` for text vectorization
+- `cosine_similarity` to compare movie descriptions
+- Streamlit for the interactive UI
 
-            st.markdown(
-                f"""
-                ### {i}. 🎬 {movie['title']}
+## ✅ Requirements
 
-                **Genre:** {movie['genres']}
+```text
+streamlit
+pandas
+scikit-learn
+```
 
-                **AI Similarity:** {movie['similarity']}%
-                """
-            )
+## 📚 Notes
 
-            st.divider()
+This project is a great beginner example of:
 
-    else:
-        st.warning(
-            "Movie not found. Please select another movie."
-        )
+- Machine learning
+- Natural language processing
+- Recommendation systems
+- Content-based filtering
 
+If you want, you can expand it with:
 
-# -----------------------------
-# About Section
-# -----------------------------
-st.sidebar.title("ℹ️ About")
+- popularity-based filtering
+- collaborative filtering
+- user login and saved preferences
+- movie posters and ratings
+- deployment to Streamlit Cloud or Render
 
-st.sidebar.write(
-    """
-    This AI Movie Recommender uses:
+---
 
-    • TF-IDF Vectorization  
-    • Cosine Similarity  
-    • Content-Based Filtering  
-    • Natural Language Processing  
+Made with Python, ML, and a little movie magic 🎬✨
 
-    The system analyzes movie genres and descriptions
-    to recommend movies with similar characteristics.
-    """
-)
-
-st.sidebar.markdown("---")
-
-st.sidebar.write(
-    "🎓 AI/ML Project"
-)

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="520" viewBox="0 0 1000 520" role="img" aria-label="Movie recommendation flow diagram">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#22c55e"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#ec4899"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1000" height="520" fill="#0b1220" rx="28"/>
+
+  <g>
+    <rect x="60" y="200" width="180" height="110" rx="20" fill="#111827" stroke="#38bdf8" stroke-width="2"/>
+    <text x="150" y="245" text-anchor="middle" font-size="22" fill="#dbeafe" font-family="Arial, sans-serif">1. Load Data</text>
+    <text x="150" y="272" text-anchor="middle" font-size="18" fill="#94a3b8" font-family="Arial, sans-serif">movies.csv</text>
+
+    <rect x="300" y="200" width="180" height="110" rx="20" fill="#111827" stroke="#22c55e" stroke-width="2"/>
+    <text x="390" y="245" text-anchor="middle" font-size="22" fill="#dcfce7" font-family="Arial, sans-serif">2. Clean</text>
+    <text x="390" y="272" text-anchor="middle" font-size="18" fill="#94a3b8" font-family="Arial, sans-serif">genres + text</text>
+
+    <rect x="540" y="200" width="180" height="110" rx="20" fill="#111827" stroke="#f59e0b" stroke-width="2"/>
+    <text x="630" y="245" text-anchor="middle" font-size="22" fill="#fef3c7" font-family="Arial, sans-serif">3. TF-IDF</text>
+    <text x="630" y="272" text-anchor="middle" font-size="18" fill="#94a3b8" font-family="Arial, sans-serif">vectorize text</text>
+
+    <rect x="780" y="200" width="180" height="110" rx="20" fill="#111827" stroke="#c084fc" stroke-width="2"/>
+    <text x="870" y="245" text-anchor="middle" font-size="22" fill="#f3e8ff" font-family="Arial, sans-serif">4. Recommend</text>
+    <text x="870" y="272" text-anchor="middle" font-size="18" fill="#94a3b8" font-family="Arial, sans-serif">top matches</text>
+  </g>
+
+  <g stroke="url(#g1)" stroke-width="5" fill="none" stroke-linecap="round">
+    <path d="M240 255 H300"/>
+    <path d="M480 255 H540"/>
+    <path d="M720 255 H780"/>
+  </g>
+
+  <g>
+    <text x="500" y="100" text-anchor="middle" font-size="34" fill="#ffffff" font-family="Arial, sans-serif" font-weight="700">Recommendation pipeline</text>
+    <text x="500" y="135" text-anchor="middle" font-size="18" fill="#94a3b8" font-family="Arial, sans-serif">Movie similarity powered by NLP + ML</text>
+  </g>
+</svg>
+

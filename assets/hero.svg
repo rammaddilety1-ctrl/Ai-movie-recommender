@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-label="AI Movie Recommender hero illustration">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1">
+      <stop offset="0%" stop-color="#071b2d"/>
+      <stop offset="100%" stop-color="#0f3b5d"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" x2="1">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#22c55e"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" x2="1">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="420" fill="url(#bg)" rx="28"/>
+
+  <g opacity="0.35">
+    <circle cx="100" cy="140" r="80" fill="#38bdf8"/>
+    <circle cx="1100" cy="110" r="70" fill="#22c55e"/>
+    <circle cx="1000" cy="330" r="120" fill="#7c3aed"/>
+  </g>
+
+  <g>
+    <rect x="90" y="90" width="380" height="240" rx="22" fill="#0b1f36" stroke="#1f6feb" stroke-width="2"/>
+    <text x="130" y="140" font-size="24" fill="#dbeafe" font-family="Arial, sans-serif" font-weight="700">AI Movie Recommender</text>
+    <text x="130" y="182" font-size="38" fill="#ffffff" font-family="Arial, sans-serif" font-weight="700">Find your next</text>
+    <text x="130" y="226" font-size="38" fill="#7dd3fc" font-family="Arial, sans-serif" font-weight="700">favorite movie</text>
+    <rect x="130" y="255" width="142" height="42" rx="21" fill="url(#card)"/>
+    <text x="166" y="282" font-size="18" fill="#ffffff" font-family="Arial, sans-serif" font-weight="700">🎬 Recommend</text>
+  </g>
+
+  <g>
+    <rect x="560" y="110" width="240" height="150" rx="18" fill="#111827" stroke="#22c55e" stroke-width="2"/>
+    <text x="590" y="160" font-size="18" fill="#d1fae5" font-family="Arial, sans-serif">Selected Movie</text>
+    <text x="590" y="204" font-size="34" fill="#ffffff" font-family="Arial, sans-serif" font-weight="700">Inception</text>
+
+    <rect x="835" y="110" width="240" height="150" rx="18" fill="#111827" stroke="#38bdf8" stroke-width="2"/>
+    <text x="865" y="160" font-size="18" fill="#dbeafe" font-family="Arial, sans-serif">Top Match</text>
+    <text x="865" y="204" font-size="30" fill="#ffffff" font-family="Arial, sans-serif" font-weight="700">Interstellar</text>
+
+    <path d="M800 185 L835 185" stroke="url(#line)" stroke-width="6" stroke-linecap="round"/>
+    <path d="M800 185 L824 175" stroke="url(#line)" stroke-width="6" stroke-linecap="round"/>
+    <path d="M800 185 L824 195" stroke="url(#line)" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <g>
+    <rect x="570" y="290" width="500" height="32" rx="16" fill="#0f172a" stroke="#334155"/>
+    <rect x="570" y="290" width="310" height="32" rx="16" fill="#34d399" opacity="0.9">
+      <animate attributeName="width" from="0" to="310" dur="2s" repeatCount="indefinite"/>
+    </rect>
+    <text x="760" y="311" font-size="16" fill="#e2e8f0" font-family="Arial, sans-serif" text-anchor="middle">AI similarity score: 88.4%</text>
+  </g>
+
+  <g transform="translate(0 0)">
+    <circle cx="170" cy="310" r="8" fill="#38bdf8">
+      <animate attributeName="cy" values="310;300;310" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="230" cy="330" r="10" fill="#34d399">
+      <animate attributeName="cy" values="330;318;330" dur="2.3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="290" cy="315" r="7" fill="#a78bfa">
+      <animate attributeName="cy" values="315;302;315" dur="1.8s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+</svg>
+
